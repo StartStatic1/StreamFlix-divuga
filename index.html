@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StreamFlix — Informações do Serviço</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#05080f;
+  --card:#0c1220;
+  --card2:#111827;
+  --red:#e50914;
+  --red2:#ff3d47;
+  --cyan:#00d4ff;
+  --gold:#f5c518;
+  --green:#00e676;
+  --purple:#9c27b0;
+  --text:#f0f4ff;
+  --muted:#6b7fa3;
+  --border:rgba(229,9,20,0.2);
+  --border2:rgba(0,212,255,0.15);
+}
+
+body{
+  background:var(--bg);
+  font-family:'Outfit',sans-serif;
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:0;
+}
+
+/* ══ WRAPPER ══ */
+.wrap{
+  width:100%;
+  max-width:720px;
+  position:relative;
+}
+
+/* ══ HERO ══ */
+.hero{
+  position:relative;
+  overflow:hidden;
+  padding:50px 28px 40px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(229,9,20,0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 80% 100%, rgba(0,212,255,0.1) 0%, transparent 60%),
+    linear-gradient(180deg,#0d0f1a 0%,#05080f 100%);
+  text-align:center;
+  border-bottom:1px solid var(--border);
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e50914' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;
+  opacity:.6;
+}
+
+.logo-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:rgba(229,9,20,0.12);
+  border:1px solid rgba(229,9,20,0.35);
+  border-radius:50px;
+  padding:6px 18px 6px 8px;
+  margin-bottom:20px;
+}
+.logo-play{
+  width:36px;height:36px;
+  background:var(--red);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+  box-shadow:0 0 20px rgba(229,9,20,0.6);
+}
+.logo-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:22px;
+  letter-spacing:3px;
+  color:#fff;
+}
+.logo-name span{color:var(--red2);}
+
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(32px,8vw,56px);
+  letter-spacing:2px;
+  line-height:1.05;
+  background:linear-gradient(135deg,#fff 40%,var(--red2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:10px;
+}
+.hero-sub{
+  font-size:14px;
+  color:var(--muted);
+  letter-spacing:.5px;
+  max-width:400px;
+  margin:0 auto;
+  line-height:1.6;
+}
+
+/* ══ SECTIONS ══ */
+.section{
+  background:var(--card);
+  border-left:1px solid var(--border);
+  border-right:1px solid var(--border);
+  padding:26px 24px 22px;
+  border-top:1px solid rgba(255,255,255,0.04);
+}
+
+.sec-title{
+  display:flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--red2);
+  margin-bottom:18px;
+}
+.sec-title::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,rgba(229,9,20,0.3),transparent);
+}
+
+/* ══ PLANO CARDS ══ */
+.plan-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.pcard{
+  background:var(--card2);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:14px;
+  padding:16px 10px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.pcard::after{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+}
+.pcard.v::after{background:linear-gradient(90deg,var(--cyan),#0066ff);}
+.pcard.p::after{background:linear-gradient(90deg,var(--gold),#ff9800);}
+.pcard.c::after{background:linear-gradient(90deg,var(--green),#00bfa5);}
+.pcard .ico{font-size:24px;margin-bottom:6px;}
+.pcard .lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.pcard .val{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;color:#fff;margin-top:3px;}
+.pcard .val.cyan{color:var(--cyan);}
+.pcard .val.gold{color:var(--gold);}
+.pcard .val.green{color:var(--green);}
+
+/* ══ DNS ══ */
+.dns-list{display:flex;flex-direction:column;gap:10px;}
+.dns-item{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--card2);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:12px;
+  padding:13px 16px;
+}
+.dns-tag{
+  font-size:10px;font-weight:700;
+  letter-spacing:1px;
+  padding:3px 10px;border-radius:6px;
+  white-space:nowrap;margin-top:1px;flex-shrink:0;
+}
+.dns-tag.xc{background:rgba(0,212,255,0.12);color:var(--cyan);border:1px solid rgba(0,212,255,0.25);}
+.dns-tag.sm{background:rgba(156,39,176,0.12);color:#ce93d8;border:1px solid rgba(156,39,176,0.25);}
+.dns-body .dns-url{font-size:13px;color:#fff;font-weight:500;}
+.dns-body .dns-hint{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.5;}
+
+/* ══ APPS ══ */
+.apps-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.acard{
+  background:var(--card2);
+  border-radius:14px;
+  padding:18px 10px 14px;
+  text-align:center;
+  border:1px solid transparent;
+  position:relative;overflow:hidden;
+}
+.acard.android{border-color:rgba(0,230,118,.2);}
+.acard.smart  {border-color:rgba(245,197,24,.2);}
+.acard.codigo {border-color:rgba(156,39,176,.2);}
+.acard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:3px 3px 0 0;}
+.acard.android::before{background:linear-gradient(90deg,var(--green),#69f0ae);}
+.acard.smart::before  {background:linear-gradient(90deg,var(--gold),#ffe082);}
+.acard.codigo::before {background:linear-gradient(90deg,var(--purple),#ce93d8);}
+.acard .a-ico{font-size:26px;margin-bottom:8px;}
+.acard .a-name{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;color:#fff;margin-bottom:4px;}
+.acard .a-sub{font-size:10px;color:var(--muted);margin-bottom:10px;line-height:1.4;}
+.abadge{
+  display:inline-block;font-size:10px;font-weight:600;
+  padding:3px 9px;border-radius:6px;letter-spacing:.5px;
+}
+.abadge.g{background:rgba(0,230,118,.12);color:var(--green);border:1px solid rgba(0,230,118,.25);}
+.abadge.y{background:rgba(245,197,24,.12);color:var(--gold);border:1px solid rgba(245,197,24,.25);}
+.abadge.p{background:rgba(156,39,176,.12);color:#ce93d8;border:1px solid rgba(156,39,176,.25);}
+.a-code-lbl{font-size:10px;color:var(--muted);margin-top:8px;}
+.a-code-val{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;color:var(--cyan);}
+
+/* ══ LINKS ══ */
+.link-list{display:flex;flex-direction:column;gap:8px;}
+.lrow{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--card2);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:10px;
+  padding:12px 14px;
+}
+.ldot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.ltype{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:14px;letter-spacing:1px;
+  min-width:70px;color:var(--muted);
+}
+.ldesc{font-size:12px;color:var(--text);line-height:1.5;}
+.ldesc strong{color:#fff;}
+
+/* ══ DOWNLOAD ══ */
+.dl-box{
+  display:flex;align-items:center;gap:14px;
+  background:linear-gradient(135deg,rgba(229,9,20,.07),rgba(0,212,255,.05));
+  border:1px solid rgba(229,9,20,.2);
+  border-radius:14px;
+  padding:16px 18px;
+}
+.dl-ico{font-size:32px;flex-shrink:0;}
+.dl-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;color:#fff;}
+.dl-sub{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.5;}
+
+/* ══ CTA BUTTONS ══ */
+.cta-section{
+  background:linear-gradient(135deg,#0d0f1a,#05080f);
+  border:1px solid var(--border);
+  border-top:1px solid rgba(229,9,20,0.3);
+  padding:28px 24px 32px;
+  border-radius:0 0 24px 24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+.cta-label{
+  font-size:11px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:4px;
+}
+
+.btn-row{
+  display:flex;gap:12px;width:100%;max-width:500px;
+  flex-wrap:wrap;justify-content:center;
+}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 28px;
+  border-radius:12px;
+  font-family:'Outfit',sans-serif;
+  font-size:14px;font-weight:700;
+  letter-spacing:.5px;
+  text-decoration:none;
+  cursor:pointer;
+  border:none;
+  transition:transform .15s,box-shadow .15s;
+  flex:1;min-width:180px;
+}
+.btn:hover{transform:translateY(-2px);}
+
+.btn-pay{
+  background:linear-gradient(135deg,var(--red),#c50000);
+  color:#fff;
+  box-shadow:0 4px 24px rgba(229,9,20,0.45);
+}
+.btn-pay:hover{box-shadow:0 8px 32px rgba(229,9,20,0.6);}
+
+.btn-tg{
+  background:linear-gradient(135deg,#0088cc,#006fa8);
+  color:#fff;
+  box-shadow:0 4px 24px rgba(0,136,204,0.4);
+}
+.btn-tg:hover{box-shadow:0 8px 32px rgba(0,136,204,0.55);}
+
+.btn-icon{font-size:18px;}
+
+.footer-note{
+  font-size:11px;color:var(--muted);
+  text-align:center;letter-spacing:.3px;
+  margin-top:4px;
+}
+
+/* ══ DIVIDER ══ */
+.divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(229,9,20,.3),transparent);
+  margin:0;
+}
+
+/* ══ GLOW LINE TOP ══ */
+.topline{
+  height:3px;
+  background:linear-gradient(90deg,transparent 0%,var(--red) 30%,var(--red2) 50%,var(--red) 70%,transparent 100%);
+  border-radius:3px 3px 0 0;
+  box-shadow:0 0 20px rgba(229,9,20,0.6);
+}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+  .apps-grid{grid-template-columns:1fr;}
+  .plan-row{grid-template-columns:repeat(3,1fr);}
+  .btn{min-width:140px;font-size:13px;padding:13px 18px;}
+  .section{padding:20px 14px 16px;}
+  .hero{padding:36px 16px 30px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- GLOW TOP -->
+  <div class="topline"></div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="logo-badge">
+      <div class="logo-play">▶</div>
+      <div class="logo-name">STREAM<span>FLIX</span></div>
+    </div>
+    <div class="hero-title">Informações<br>do Seu Serviço</div>
+    <div class="hero-sub">Tudo que você precisa para configurar e aproveitar ao máximo o seu plano de streaming</div>
+  </div>
+
+  <!-- RESUMO DO PLANO -->
+  <div class="section">
+    <div class="sec-title">📋 Resumo do Plano</div>
+    <div class="plan-row">
+      <div class="pcard v">
+        <div class="ico">📅</div>
+        <div class="lbl">Vencimento</div>
+        <div class="val cyan" style="font-size:16px;">04/07/2026</div>
+      </div>
+      <div class="pcard p">
+        <div class="ico">💰</div>
+        <div class="lbl">Valor</div>
+        <div class="val gold">R$20,00</div>
+      </div>
+      <div class="pcard c">
+        <div class="ico">⭐</div>
+        <div class="lbl">Plano</div>
+        <div class="val green" style="font-size:14px;">1 Mês<br>+ Adulto</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- DNS -->
+  <div class="section">
+    <div class="sec-title">🌐 DNS e Servidores</div>
+    <div class="dns-list">
+      <div class="dns-item">
+        <span class="dns-tag xc">XCIPTV</span>
+        <div class="dns-body">
+          <div class="dns-url">http://idealtv.online</div>
+          <div class="dns-hint">Cole no campo <strong>DNS</strong> do app XCIPTV — mantenha os demais parâmetros de usuário inalterados</div>
+        </div>
+      </div>
+      <div class="dns-item">
+        <span class="dns-tag sm">SMARTERS</span>
+        <div class="dns-body">
+          <div class="dns-url">http://idealtv.online</div>
+          <div class="dns-hint">Cole no campo <strong>DNS</strong> do Smarters Player — não adicione parâmetros extras ao endereço</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ONDE ASSISTIR -->
+  <div class="section">
+    <div class="sec-title">📺 Onde Assistir?</div>
+    <div class="apps-grid">
+      <div class="acard android">
+        <div class="a-ico">🤖</div>
+        <div class="a-name">Android / TV Box</div>
+        <div class="a-sub">Recomendado para Android e TV Box</div>
+        <span class="abadge g">Thunder Play</span>
+        <div class="a-code-lbl">Cód. Downloader</div>
+        <div class="a-code-val">5519403</div>
+      </div>
+      <div class="acard smart">
+        <div class="a-ico">📱</div>
+        <div class="a-name">Smart TV / Mobile</div>
+        <div class="a-sub">Roku, Celular e Smart TVs em geral</div>
+        <span class="abadge y">Thunder Play</span>
+        <div class="a-code-lbl">Cód. Downloader</div>
+        <div class="a-code-val">9416327</div>
+      </div>
+      <div class="acard codigo">
+        <div class="a-ico">🖥️</div>
+        <div class="a-name">Login Código</div>
+        <div class="a-sub">Smart TVs via Noma TV</div>
+        <span class="abadge p">Cód: 3979810</span>
+        <div class="a-code-lbl">ID do Serviço</div>
+        <div class="a-code-val">THPAY</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- LINKS -->
+  <div class="section">
+    <div class="sec-title">🔗 Links de Acesso</div>
+    <div class="link-list">
+      <div class="lrow">
+        <div class="ldot" style="background:#00d4ff;box-shadow:0 0 6px #00d4ff;"></div>
+        <div class="ltype">DNS STB</div>
+        <div class="ldesc">Para receptores STB e SmartUp — configure com o IP <strong>185.47.143.11</strong></div>
+      </div>
+      <div class="lrow">
+        <div class="ldot" style="background:#9c27b0;box-shadow:0 0 6px #9c27b0;"></div>
+        <div class="ltype">WebPlayer</div>
+        <div class="ldesc">Assista direto no navegador sem instalar nada — acesse <strong>http://tvweb.sbs</strong></div>
+      </div>
+      <div class="lrow">
+        <div class="ldot" style="background:#f5c518;box-shadow:0 0 6px #f5c518;"></div>
+        <div class="ltype">SSIPTV</div>
+        <div class="ldesc">Playlist para o app SSIPTV — compatível com <strong>Samsung</strong> e <strong>LG Smart TVs</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- DOWNLOAD -->
+  <div class="section">
+    <div class="sec-title">📥 Download do App</div>
+    <div class="dl-box">
+      <div class="dl-ico">📲</div>
+      <div>
+        <div class="dl-title">APK Direto para Android</div>
+        <div class="dl-sub">Instale sem precisar da Play Store — link disponível no painel. Em breve também disponível na Play Store oficial.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-label">Acesso Rápido</div>
+    <div class="btn-row">
+      <a class="btn btn-pay" href="#">
+        <span class="btn-icon">💳</span>
+        Assinar / Renovar Plano
+      </a>
+      <a class="btn btn-tg" href="https://t.me/streamflixofc" target="_blank">
+        <span class="btn-icon">✈️</span>
+        Telegram Oficial
+      </a>
+    </div>
+    <div class="footer-note">© StreamFlix · Suporte e novidades pelo Telegram</div>
+  </div>
+
+</div>
+</body>
+</html>
